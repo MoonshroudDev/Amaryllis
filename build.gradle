@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+application.mainClass = 'com.moonshrouddev.amaryllis.Main'
+group = 'com.moonshrouddev.amaryllis'
+version = '1.0.0'
+
+shadowJar {
+    archiveFileName = 'Amaryllis.jar'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    // JDA
+    implementation ("net.dv8tion:JDA:5.0.0-beta.9")
+
+    // Logging
+    implementation ("ch.qos.logback:logback-classic:1.4.7")
+
+    // Database
+    implementation ("org.mariadb.jdbc:mariadb-java-client:3.0.9")
+    implementation ("com.zaxxer:HikariCP:5.0.1")
+
+    // Reflections
+    implementation("org.reflections:reflections:0.10.2")
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.incremental = true
+
+    //JDA supports Java 8 and above
+    sourceCompatibility = "1.8"
+}
